@@ -6,12 +6,12 @@ Sialia is an embeddable C-CDA rendering library. It breaks down CDA documents in
 
 **npm**
 ```bash
-npm add github:Royal-Jay/sialia
+npm add github:Kno2/sialia
 ```
 
 **npm**
 ```bash
-npm install --save github:Royal-Jay/sialia
+npm install --save github:Kno2/sialia
 ```
 
 ### Usage
@@ -59,8 +59,8 @@ npm start
 
 Sialia relies on a forked version of bluebutton.js:
 
-https://github.com/Royal-Jay/bluebutton.js
+https://github.com/Kno2/bluebutton.js
 
 ## License
 
-
+Licensed under Apache 2 - see [License](LICENSE.md)
