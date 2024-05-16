@@ -23,7 +23,7 @@
     "lodash": "^4.17.5",
     "moment": "^2.29.4",
     "popper.js": "^1.14.6",
-    "riot": "^3.9.0"
+    "riot": "^9.1.6"
   },
   "devDependencies": {
     "@babel/core": "^7.13.15",
