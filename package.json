@@ -23,7 +23,7 @@
     "lodash": "^4.17.5",
     "moment": "^2.29.4",
     "popper.js": "^1.14.6",
-    "riot": "^3.9.0"
+    "riot": "^9.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.15",
@@ -45,7 +45,7 @@
     "riot-tag-loader": "^2.0.2",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.20.3",
-    "ts-loader": "^4.0.1",
+    "ts-loader": "^9.5.1",
     "typescript": "^4.2.4",
     "url-loader": "^1.0.1",
     "webpack": "^5.89.0",
