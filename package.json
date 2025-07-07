@@ -15,7 +15,7 @@
   "dependencies": {
     "@kno2/bluebutton": "^0.6.8",
     "autoprefixer": "^9.4.9",
-    "bootstrap": "^4.2.1",
+    "bootstrap": "^5.0.0",
     "core-js": "^2.5.7",
     "dragula": "^3.7.2",
     "font-awesome": "^4.7.0",
