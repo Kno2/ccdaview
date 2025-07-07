@@ -40,6 +40,25 @@ export default {
         ]
     },
     devServer: {
-        static: [__dirname, path.resolve(__dirname, '../docs')]
+        static: [
+            {
+                directory: __dirname,
+                watch: true
+            },
+            {
+                directory: path.resolve(__dirname, '../docs'),
+                watch: true
+            }
+        ],
+        client: {
+            overlay: {
+                warnings: false
+            },
+        },
+        compress: true,
+        hot: true,
+        open: false,
+        port: 8081,
+        historyApiFallback: true
     }
 }
