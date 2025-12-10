@@ -8,6 +8,10 @@
     "dist/"
   ],
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kno2/ccdaview.git"
+  },
   "scripts": {
     "start": "webpack-dev-server --config demo/webpack.demo.config.babel.js --mode development",
     "build": "webpack --mode production"
