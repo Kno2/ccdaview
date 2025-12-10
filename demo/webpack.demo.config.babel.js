@@ -29,8 +29,13 @@ export default {
             },
             {
                 test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-                loader: 'url-loader',
-                exclude: /dist/
+                type: 'asset',
+                exclude: /dist/,
+                parser: {
+                    dataUrlCondition: {
+                        maxSize: 8192 // inline files smaller than 8kb (url-loader default)
+                    }
+                }
             },
             {
                 test: /\.scss$/,
