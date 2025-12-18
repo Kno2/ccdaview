@@ -1,6 +1,6 @@
 import '../styles/styles.scss';
 import 'bootstrap';
 import './tags';
-import 'core-js/fn/promise';
+import 'core-js/stable/promise';
 
 export * from './sialia';
