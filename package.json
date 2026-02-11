@@ -10,7 +10,7 @@
   ],
   "browser": {
     "jquery": "./shims/jquery.js",
-    "bootstrap": "./shims/bootstrap.js"
+    "bootstrap": false
   },
   "license": "Apache-2.0",
   "repository": {
