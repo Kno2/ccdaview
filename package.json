@@ -5,13 +5,8 @@
   "module": "dist/sialia.js",
   "typings": "dist/index",
   "files": [
-    "dist/",
-    "shims/"
+    "dist/"
   ],
-  "browser": {
-    "jquery": "./shims/jquery.js",
-    "bootstrap": false
-  },
   "license": "Apache-2.0",
   "repository": {
     "type": "git",

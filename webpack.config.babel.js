@@ -3,9 +3,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const externals = {
     bluebutton: 'bluebutton',
-    bootstrap: 'bootstrap',
     dragula: 'dragula',
-    jquery: 'jquery',
     lodash: 'lodash',
     moment: 'moment',
     riot: 'riot'
@@ -27,7 +25,11 @@ export default {
         minimize: false,
     },
     resolve: {
-        extensions: ['.scss', '.ts', '.tsx', '.js']
+        extensions: ['.scss', '.ts', '.tsx', '.js'],
+        alias: {
+            jquery$: path.resolve(__dirname, 'shims/jquery.js'),
+            bootstrap$: path.resolve(__dirname, 'shims/bootstrap.js')
+        }
     },
     plugins: [
         new MiniCssExtractPlugin({ filename: '[name].css' })
