@@ -56,7 +56,7 @@ export default {
         compress: true,
         hot: true,
         open: false,
-        port: 8083,
+        port: 8081,
         historyApiFallback: true
     }
 }
