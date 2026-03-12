@@ -49,3 +49,7 @@ client/build
 
 #Compiled files
 dist
+
+
+## ai
+.claude/

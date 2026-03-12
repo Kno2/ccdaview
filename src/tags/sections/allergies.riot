@@ -1,0 +1,14 @@
+<allergies>
+  <panel section={ props.section } data={ props.data }>
+    <div class="row" if={ props.data.entries.length }>
+      <div each={ entry in props.data.entries } class="col-sm-4">
+        <div class="alert alert-mild clearfix " role="alert">
+          <h4>{ entry.allergen.name }</h4>
+          <div class="pull-left">{ entry.reaction.name }</div>
+          <div class="pull-right">{ entry.severity }</div>
+        </div>
+      </div>
+    </div>
+    <empty if={ !props.data.entries.length } />
+  </panel>
+</allergies>

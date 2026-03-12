@@ -1,14 +1,12 @@
-import moment from 'moment';
-
 <medications>
-    <panel section={ opts.section } data={ opts.data }>
-        <div each={ opts.data.entries }>
+    <panel section={ props.section } data={ props.data }>
+        <div each={ entry in props.data.entries }>
             <div class="row">
                 <div class="col-md-12">
                     <div class="header-row">
-                        { text }
+                        { entry.text }
                         <span class="header-date pull-right">
-                             <span class="header-small">{ date_range.start_display } - { date_range.end_display }
+                             <span class="header-small">{ entry.date_range.start_display } - { entry.date_range.end_display }</span>
                         </span>
                     </div>
                 </div>
@@ -28,7 +26,7 @@ import moment from 'moment';
                                 <span class="header-small">Admin</span>
                             </th>
                             <td>
-                                <span>{ administration.name } [{ administration.code }]</span>
+                                <span>{ entry.administration.name } [{ entry.administration.code }]</span>
                             </td>
                         </tr>
                         <tr>
@@ -36,7 +34,7 @@ import moment from 'moment';
                                 <span class="header-small">Schedule</span>
                             </th>
                             <td>
-                                <span>{ schedule.type } { schedule.period_value }{ schedule.period_unit }</span>
+                                <span>{ entry.schedule.type } { entry.schedule.period_value }{ entry.schedule.period_unit }</span>
                             </td>
                         </tr>
                         <tr>
@@ -44,7 +42,7 @@ import moment from 'moment';
                                 <span class="header-small">Dose</span>
                             </th>
                             <td>
-                                <span>{ dose_quantity.value } { dose_quantity.unit }</span>
+                                <span>{ entry.dose_quantity.value } { entry.dose_quantity.unit }</span>
                             </td>
                         </tr>
                         <tr>
@@ -52,7 +50,7 @@ import moment from 'moment';
                                 <span class="header-small">Rate</span>
                             </th>
                             <td>
-                                <span>{ rate_quantity.value } { rate_quantity.unit }</span>
+                                <span>{ entry.rate_quantity.value } { entry.rate_quantity.unit }</span>
                             </td>
                         </tr>
                         </tbody>
@@ -67,7 +65,7 @@ import moment from 'moment';
                                 <span class="header-small">Route</span>
                             </th>
                             <td>
-                                <span>{ route.name }</span>
+                                <span>{ entry.route.name }</span>
                             </td>
                         </tr>
                         <tr>
@@ -75,7 +73,7 @@ import moment from 'moment';
                                 <span class="header-small">Vehicle</span>
                             </th>
                             <td>
-                                <span>{ vehicle.name } [{ vehicle.code_system_name } { vehicle.code }]</span>
+                                <span>{ entry.vehicle.name } [{ entry.vehicle.code_system_name } { entry.vehicle.code }]</span>
                             </td>
                         </tr>
                         <tr>
@@ -83,7 +81,7 @@ import moment from 'moment';
                                 <span class="header-small">Prescriber</span>
                             </th>
                             <td>
-                                <span>{ prescriber.organization }</span>
+                                <span>{ entry.prescriber.organization }</span>
                             </td>
                         </tr>
                         <tr>
@@ -94,7 +92,7 @@ import moment from 'moment';
                 </div>
                 <div class="col-md-4">
                     <span class="header-small"><b>Reason</b></span>
-                    <p class="reasons">{ reason.name }</p>
+                    <p class="reasons">{ entry.reason.name }</p>
                 </div>
             </div>
         </div>
@@ -102,13 +100,16 @@ import moment from 'moment';
 
 
     <script>
+        import { format } from 'date-fns';
+        import * as _ from 'lodash';
 
-        this.on('update', function() {
-            _.each(opts.data.entries, function(e) {
-                e.date_range.start_display =  moment(e.date_range.start).format('MMM D, YYYY');
-                e.date_range.end_display =  moment(e.date_range.end).format('MMM D, YYYY');
-            });
-        })
-
+        export default {
+            onBeforeUpdate(props) {
+                _.each(props.data.entries, function(e) {
+                    e.date_range.start_display = format(new Date(e.date_range.start), 'MMM d, yyyy');
+                    e.date_range.end_display = format(new Date(e.date_range.end), 'MMM d, yyyy');
+                });
+            }
+        }
     </script>
 </medications>

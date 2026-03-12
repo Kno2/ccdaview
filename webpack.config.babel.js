@@ -5,7 +5,6 @@ const externals = {
     bluebutton: 'bluebutton',
     dragula: 'dragula',
     lodash: 'lodash',
-    moment: 'moment',
     riot: 'riot'
 };
 
@@ -25,7 +24,7 @@ export default {
         minimize: false,
     },
     resolve: {
-        extensions: ['.scss', '.ts', '.tsx', '.js'],
+        extensions: ['.riot', '.scss', '.ts', '.tsx', '.js'],
         alias: {
             jquery$: path.resolve(__dirname, 'shims/jquery.js'),
             bootstrap$: path.resolve(__dirname, 'shims/bootstrap.js')
@@ -37,16 +36,9 @@ export default {
     module: {
         rules: [
             {
-                test: /\.tag$/,
-                use: [{
-                    loader: 'riot-tag-loader',
-                    options: {
-                        enforce: 'pre',
-                        type: 'none',
-                        format: 'ems',
-                        hot: false,
-                    }
-                }]
+                test: /\.riot$/,
+                exclude: /node_modules/,
+                use: [{ loader: '@riotjs/webpack-loader', options: { hot: false } }]
             },
             {
                 test: /\.ts(x?)$/,
