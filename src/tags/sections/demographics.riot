@@ -62,10 +62,10 @@
       },
 
       addressNotEmpty(address) {
-        return this.props.demographics.address.street[0]
-          || this.props.demographics.address.city
-          || this.props.demographics.address.state
-          || this.props.demographics.address.zip;
+        return address.street[0]
+          || address.city
+          || address.state
+          || address.zip;
       },
 
       formatDate(date) {
