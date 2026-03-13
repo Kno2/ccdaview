@@ -41,8 +41,7 @@ export class Sialia {
             return this.documentService.open(document)
                 .then((options) => {
                     options.documents = this.documents || [document];
-                    this.instance.opts = options;
-                    this.instance.update();
+                    this.instance.update(options);
                 });
         }
 
@@ -51,8 +50,7 @@ export class Sialia {
     }
 
     public close(): void {
-        this.instance.opts = {};
-        this.instance.update();
+        this.instance.update({ data: null, sections: [], documents: [] });
     }
 }
 

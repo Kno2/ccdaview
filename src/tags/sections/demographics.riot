@@ -1,0 +1,113 @@
+<demographics>
+  <div class="panel panel-default" id="demographics">
+    <div class="panel-heading">
+      <h2><name name={ props.demographics.name } /></h2>
+      <a href="#" class="toggle-body" onclick={ toggle }>
+        <i class={ 'fa fa-chevron-down' + (state.visible ? ' fa-rotate-180' : '') } title="Show/hide"></i>
+      </a>
+      <ul class="fa-ul">
+        <li class="dob">
+          <i class="fa fa-li fa-birthday-cake" title="DOB"></i>
+          <p>{ formatDate(props.demographics.dob) }</p>
+        </li>
+        <li class="guardian" if={ props.demographics.guardian.name.family }>
+          <i class="fa fa-li fa-child" title="Guardian"></i>
+          <name name={ props.demographics.guardian.name } />{ ' ' }<span class="text-muted">(guardian)</span>
+        </li>
+      </ul>
+    </div>
+    <div class="panel-body" if={ state.visible }>
+      <ul class="fa-ul">
+        <li class="narrative">
+          <i class={ 'fa fa-li' + (props.demographics.gender === 'female' ? ' fa-female' : '') + (props.demographics.gender === 'male' ? ' fa-male' : '') } title="Demographics"></i>
+          <p>
+            <strong>{ props.demographics.name.given[0] }</strong> is a
+            <strong>{ props.demographics.marital_status } { props.demographics.race } { props.demographics.gender }</strong> whose religion is
+            <strong>{ props.demographics.religion || 'unspecified' }</strong> and speaks <strong>{ formatLanguage(props.demographics.language) }</strong>.
+            </p>
+        </li>
+        <li if={ addressNotEmpty(props.demographics.address) }>
+          <i class="fa fa-li fa-map-marker" title="Address"></i>
+          <address class="address">
+            <span if={ props.demographics.address.street[0] }>{ props.demographics.address.street[0] }<br></span>
+            <span if={ props.demographics.address.city }>{ props.demographics.address.city + ', ' }</span>{ props.demographics.address.state } { props.demographics.address.zip }
+          </address>
+        </li>
+        <li if={ props.demographics.phone }>
+          <i class="fa fa-li fa-phone" title="Phone"></i>
+          <address class="phone"> { formatPhone(props.demographics.phone) }</address>
+        </li>
+        <li if={ props.demographics.provider.organization }>
+          <i class="fa fa-li fa-building" title="Provider"></i>
+          <p>{ props.demographics.provider.organization }</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    import { format } from 'date-fns';
+    import * as _ from 'lodash';
+    import '../../utilities/lodashmixins';
+    import { languages } from '../../utilities/lang';
+
+    export default {
+      state: {
+        visible: true
+      },
+
+      toggle(e) {
+        e.preventDefault();
+        this.update({ visible: !this.state.visible });
+      },
+
+      addressNotEmpty(address) {
+        return address.street[0]
+          || address.city
+          || address.state
+          || address.zip;
+      },
+
+      formatDate(date) {
+        return format(new Date(date), 'MMM d, yyyy');
+      },
+
+      formatPhone(phone) {
+        var p = '';
+        if (phone.work) {
+          p = phone.work
+        }
+        if (phone.home) {
+          p = phone.home;
+        }
+        if (phone.cell) {
+          p = phone.cell;
+        }
+
+        var clean = "";
+        for (var i = 0, len = p.length; i < len; i++) {
+          if (!isNaN(p[i])) {
+            clean = clean + p[i];
+          }
+        }
+
+        if (clean.length > 10) {
+          if (clean[0] == '1') {
+            clean = clean.slice(1);
+          }
+        }
+
+        var pretty = '';
+        if (clean.length == 10) {
+          var c = clean;
+          pretty = '(' + c[0] + c[1] + c[2] + ') ' + c[3] + c[4] + c[5] + '-' + c[6] + c[7] + c[8] + c[9];
+        }
+        return pretty;
+      },
+
+      formatLanguage(languageCode) {
+        return languageCode && languages[languageCode.toLowerCase()] || 'an unknown language';
+      }
+    }
+  </script>
+</demographics>

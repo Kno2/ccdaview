@@ -6,21 +6,14 @@ export default {
         'demo': path.join(__dirname, './demo.ts')
     },
     resolve: {
-        extensions: ['.scss', '.ts', '.tsx', '.js']
+        extensions: ['.riot', '.scss', '.ts', '.tsx', '.js']
     },
     module: {
         rules: [
             {
-                test: /\.tag$/,
-                use: [{
-                    loader: 'riot-tag-loader',
-                    options: {
-                        enforce: 'pre',
-                        type: 'none',
-                        format: 'ems',
-                        hot: true,
-                    }
-                }]
+                test: /\.riot$/,
+                exclude: /node_modules/,
+                use: [{ loader: '@riotjs/webpack-loader', options: { hot: true } }]
             },
             {
                 test: /\.ts(x?)$/,

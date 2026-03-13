@@ -1,0 +1,17 @@
+<name>
+  <span class={ props.class }>{ props.name.given[0] } { props.name.family }{ state.possessive }</span>
+
+  <script>
+    export default {
+      state: {
+        possessive: ''
+      },
+
+      onBeforeMount(props, state) {
+        if (props.possessive) {
+          state.possessive = props.name.family.slice(-1) === 's' ? '\'' : '\'s';
+        }
+      }
+    }
+  </script>
+</name>

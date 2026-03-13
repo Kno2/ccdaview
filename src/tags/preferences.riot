@@ -1,0 +1,67 @@
+<preferences>
+  <h2>
+    <button class="btn btn-primary pull-right" type="button" name="button" onclick={ save }>Save</button>
+    Which sections would you like to see?
+    <small>
+      <a href="#" onclick={ enableAll }>all</a> | <a href="#" onclick={ disableAll }>none</a>
+      (drag to sort)</small>
+  </h2>
+    <p class="alert-info" if={ !props.pref.isSet }>
+        This is the first time you are setting up your section preferences for <b>{ props.pref.type.type } { props.pref.type.displayName }</b> documents.  You can order and select
+        sections that are relevant for the care you are providing and we will save these for future use.
+    </p>
+  <ul class="list-group" id="preferences">
+    <preference-section each={ section in props.sections } section={ section }/>
+  </ul>
+
+  <script>
+    import dragula from 'dragula';
+    import * as _ from 'lodash';
+    import '../utilities/lodashmixins';
+    import { updateSortOrder } from '../models/section';
+    import { getElementIndex } from '../utilities/htmlhelpers';
+    import { PreferencesService } from '../services';
+
+    export default {
+      onBeforeMount() {
+        this.preferencesService = new PreferencesService();
+      },
+
+      onMounted(props) {
+        updateSortOrder(props.sections);
+        var container = document.getElementById('preferences');
+        dragula([container], {direction: 'vertical'}).on('drop', (el) => {
+          var sections = this.props.sections;
+          var from = _.findIndex(sections, { key: el.key });
+          var to = getElementIndex(el);
+          _.move(sections, from, to);
+          updateSortOrder(sections);
+          this.preferencesService.save({ sections: this.props.sections, pref: this.props.pref });
+          this.update();
+        });
+      },
+
+      enableAll(e) {
+        e.preventDefault();
+        _.each(this.props.sections, function(s) {
+          s.enabled = true;
+        });
+        this.update();
+      },
+
+      disableAll(e) {
+        e.preventDefault();
+        _.each(this.props.sections, function(s) {
+          s.enabled = false;
+        });
+        this.update();
+      },
+
+      save(e) {
+        e.preventDefault();
+        this.preferencesService.save({ sections: this.props.sections, pref: this.props.pref });
+        this.props.onClosePreferences();
+      }
+    }
+  </script>
+</preferences>
