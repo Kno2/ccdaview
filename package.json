@@ -27,7 +27,7 @@
     "date-fns": "^4.1.0",
     "dragula": "^3.7.3",
     "font-awesome": "^4.7.0",
-    "lodash": "^4.17.21",
+    "lodash": "^4.18.1",
     "popper.js": "^1.16.1",
     "riot": "^10.1.2"
   },
