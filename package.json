@@ -15,7 +15,7 @@
   "scripts": {
     "start": "webpack-dev-server --config demo/webpack.demo.config.babel.js --mode development",
     "build": "webpack --mode production",
-    "preinstall": "npm whoami --ignore-scripts || npm login --ignore-scripts"
+    "preinstall": "npm whoami || npm login"
   },
   "peerDependencies": {
     "bootstrap": "^4.2.1",

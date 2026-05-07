@@ -23,7 +23,7 @@ jobs:
         with:
           script: return context.ref.replace(/refs\/tags\//, '')
           result-encoding: string
-      - run: npm ci
+      - run: npm ci --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - run: npm run build          
