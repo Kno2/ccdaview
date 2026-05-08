@@ -22,7 +22,7 @@
     "jquery": "^3.7.1"
   },
   "dependencies": {
-    "@kno2/bluebutton": "0.6.12",
+    "@kno2/bluebutton": "0.6.13",
     "autoprefixer": "10.4.23",
     "core-js": "3.47.0",
     "date-fns": "4.1.0",
