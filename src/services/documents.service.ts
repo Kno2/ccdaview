@@ -10,7 +10,10 @@ export interface DocumentsServiceConfig {
 }
 
 interface BlueButtonResult {
-    data: { [section: string]: { displayName?: string; type: DocType } };
+    data?: {
+        document?: { type?: DocType };
+        [section: string]: { displayName?: string; type?: DocType } | undefined;
+    };
 }
 
 export class DocumentsService {
