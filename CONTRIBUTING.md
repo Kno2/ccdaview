@@ -8,9 +8,9 @@ We love your input! We want to make contributing to this project as easy and tra
 - Proposing new features
 - Becoming a maintainer
 
-## We Develop with Github
+## We Develop with GitHub
 
-We use github to host code, to track issues and feature requests, as well as accept pull requests.
+We use GitHub to host code, to track issues and feature requests, as well as accept pull requests.
 
 ## We Use [Github Flow](https://guides.github.com/introduction/flow/index.html), So All Code Changes Happen Through Pull Requests
 
@@ -27,7 +27,7 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 
 In short, when you submit code changes, your submissions are understood to be under the same [Apache 2.0](https://choosealicense.com/licenses/apache-2.0/) or [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
 
-## Report bugs using Github's [issues](https://github.com/kno2/ccdaview/issues)
+## Report bugs using GitHub's [issues](https://github.com/kno2/ccdaview/issues)
 
 We use GitHub issues to track public bugs. Report a bug by [opening a new issue](); it's that easy!
 
