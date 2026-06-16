@@ -19,6 +19,7 @@ jobs:
                   node-version: '24.x'
                   cache: 'npm'
             - name: Configure NPM authentication
+              if: ${{ env.NPM_TOKEN != '' }}
               run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
             - name: npm ci
               run: npm ci --ignore-scripts
