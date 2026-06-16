@@ -30,6 +30,11 @@ export class Sialia {
     }
 
     public open(documentOrString?: Document | string): Promise<void> {
+        if (documentOrString == null) {
+            this.close();
+            return Promise.resolve();
+        }
+
         let document = documentOrString as Document;
 
         if (!isDocument(documentOrString)) {
