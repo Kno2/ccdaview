@@ -5,5 +5,5 @@ export interface Document {
 }
 
 export function isDocument(arg: unknown): arg is Document {
-    return (arg as Document).url !== undefined;
+    return arg != null && (arg as Document).url !== undefined;
 }
