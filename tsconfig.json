@@ -9,18 +9,10 @@
         "declaration": true,
         "declarationDir": "dist",
         "outDir": "dist",
-        "lib": [
-            "es2016",
-            "dom"
-        ],
+        "lib": ["es2016", "dom"]
     },
-    "exclude": [
-        "node_modules",
-        "dist"
-    ],
-    "include": [
-        "src/**/*"
-    ],
+    "exclude": ["node_modules", "dist"],
+    "include": ["src/**/*"],
     // Atom settings
     "compileOnSave": false
 }

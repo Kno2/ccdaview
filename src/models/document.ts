@@ -4,6 +4,6 @@ export interface Document {
     content?: string;
 }
 
-export function isDocument(arg: any): arg is Document {
-    return arg.url !== undefined;
+export function isDocument(arg: unknown): arg is Document {
+    return arg != null && (arg as Document).url !== undefined;
 }

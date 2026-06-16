@@ -1,15 +1,15 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    open-pull-requests-limit: 0
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    versioning-strategy: increase
-    groups:
-      npm-patch:
-        update-types:
-          - "patch"
-      npm-minor:
-        update-types:
-          - "minor"
+    - package-ecosystem: 'npm'
+      open-pull-requests-limit: 0
+      directory: '/'
+      schedule:
+          interval: 'weekly'
+      versioning-strategy: increase
+      groups:
+          npm-patch:
+              update-types:
+                  - 'patch'
+          npm-minor:
+              update-types:
+                  - 'minor'

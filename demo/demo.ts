@@ -2,7 +2,7 @@ import './jquery';
 import { Sialia } from '../src';
 import { DOCUMENTS } from './config';
 
-const sialia = new Sialia({
+new Sialia({
     docs: DOCUMENTS
 });
 

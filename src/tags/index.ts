@@ -1,22 +1,20 @@
 import riot from 'riot';
-
-import Sialia from './sialia.riot';
-import Header from './header.riot';
-import Preferences from './preferences.riot';
-import PreferenceSection from './preference-section.riot';
-import Panel from './panel.riot';
 import CcdaSection from './ccda-section.riot';
-import Raw from './raw.riot';
+import Header from './header.riot';
 import Name from './name.riot';
 import Nonxml from './nonxml.riot';
-import Empty from './sections/empty.riot';
-import Generic from './sections/generic.riot';
-import Demographics from './sections/demographics.riot';
+import Panel from './panel.riot';
+import PreferenceSection from './preference-section.riot';
+import Preferences from './preferences.riot';
+import Raw from './raw.riot';
 import Allergies from './sections/allergies.riot';
 import CarePlan from './sections/care-plan.riot';
 import ChiefComplaint from './sections/chief-complaint.riot';
+import Demographics from './sections/demographics.riot';
+import Empty from './sections/empty.riot';
 import Encounters from './sections/encounters.riot';
 import FunctionalStatus from './sections/functional-status.riot';
+import Generic from './sections/generic.riot';
 import ImmunizationDeclines from './sections/immunization_declines.riot';
 import Immunizations from './sections/immunizations.riot';
 import Instructions from './sections/instructions.riot';
@@ -26,6 +24,7 @@ import Procedures from './sections/procedures.riot';
 import Results from './sections/results.riot';
 import SmokingStatus from './sections/smoking-status.riot';
 import Vitals from './sections/vitals.riot';
+import Sialia from './sialia.riot';
 
 riot.register('sialia', Sialia);
 riot.register('app-header', Header);

@@ -1,8 +1,8 @@
-$fa-font-path: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/";
-@import "~font-awesome/scss/font-awesome";
-@import "~bootstrap/scss/bootstrap";
-@import "~bootswatch/dist/cosmo/variables";
-@import "~bootswatch/dist/cosmo/bootswatch";
+$fa-font-path: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/';
+@import '~font-awesome/scss/font-awesome';
+@import '~bootstrap/scss/bootstrap';
+@import '~bootswatch/dist/cosmo/variables';
+@import '~bootswatch/dist/cosmo/bootswatch';
 @import '~dragula/dist/dragula';
 @import 'custom';
 
@@ -33,14 +33,14 @@ sialia {
     }
 
     .alert-info {
-        font-size: .94em;
+        font-size: 0.94em;
         background-color: #eee;
         padding: 15px;
         color: #666;
     }
 
     .document-info {
-        font-size: .8em;
+        font-size: 0.8em;
         margin-top: -15px;
     }
 
@@ -53,8 +53,8 @@ sialia {
     }
 
     .header-small {
-    font-size: .8em;
-        font-color: #ccc;
+        font-size: 0.8em;
+        color: #ccc;
     }
 
     .header-row {
@@ -62,7 +62,9 @@ sialia {
         margin: 0 10px 10px 10px;
         padding-bottom: 5px;
     }
-    .table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
+    .table-borderless tbody tr td,
+    .table-borderless tbody tr th,
+    .table-borderless thead tr th {
         border: none;
     }
 
@@ -84,7 +86,6 @@ sialia {
         #right {
             padding-left: 7px;
         }
-
     }
 
     #demographics {
@@ -93,7 +94,7 @@ sialia {
         border: 1px solid transparent;
         border-color: #ddd;
         border-radius: 0;
-        box-shadow: 0 1px 1px rgba(0,0,0,.05);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 
         .fa-ul {
             margin-left: 24px;
@@ -137,7 +138,7 @@ sialia {
         &.collapsed .panel-body {
             display: none;
         }
-        
+
         &.expanded.fade {
             opacity: 1;
         }
@@ -187,7 +188,7 @@ sialia {
     }
 
     .fade {
-        opacity: .45;
+        opacity: 0.45;
     }
 
     .dropdown-toggle:after {
@@ -206,7 +207,7 @@ sialia {
             list-style-type: none;
             margin-bottom: 10px;
 
-            content[id^=problem] {
+            content[id^='problem'] {
                 display: block;
                 font-weight: bold;
             }
@@ -216,7 +217,7 @@ sialia {
     paragraph {
         display: block;
 
-        &[stylecode=Bold] {
+        &[stylecode='Bold'] {
             font-weight: bold;
         }
     }

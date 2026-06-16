@@ -1,10 +1,10 @@
-import riot from 'riot';
+import riot, { RiotComponent } from 'riot';
 import { Document, isDocument } from './models';
 import { DocumentsService } from './services';
 
 export class Sialia {
     private documentService: DocumentsService;
-    private instance: any;
+    private instance: RiotComponent;
     private documents: Array<Document>;
 
     constructor(config?: SialiaConfig) {
@@ -17,19 +17,23 @@ export class Sialia {
 
     public configure(config: SialiaConfig): void {
         // backwards compatibility
-        this.documents = (config.docs || []).map(x => ({
+        this.documents = (config.docs || []).map((x) => ({
             name: x['Name'] || x.name,
             url: x['Url'] || x.name
         }));
 
-        this.documentService.setHeaders({ ...(config.headers || {}) });
+        this.documentService.setHeaders({ ...config.headers });
 
         if (this.documents[0]) {
             this.open(this.documents[0]);
         }
     }
 
-    public open(documentOrString?: Document | string): Promise<any> {
+    public open(documentOrString?: Document | string): Promise<void> {
+        if (documentOrString == null) {
+            this.close();
+            return Promise.resolve();
+        }
 
         let document = documentOrString as Document;
 
@@ -38,11 +42,10 @@ export class Sialia {
         }
 
         if (document) {
-            return this.documentService.open(document)
-                .then((options) => {
-                    options.documents = this.documents || [document];
-                    this.instance.update(options);
-                });
+            return this.documentService.open(document).then((options) => {
+                options.documents = this.documents || [document];
+                this.instance.update(options);
+            });
         }
 
         this.close();

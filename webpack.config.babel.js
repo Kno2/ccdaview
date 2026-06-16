@@ -10,7 +10,7 @@ const externals = {
 
 export default {
     entry: {
-        'sialia': './src/index.ts'
+        sialia: './src/index.ts'
     },
     devtool: 'source-map',
     externals: externals,
@@ -21,7 +21,7 @@ export default {
         libraryTarget: 'umd'
     },
     optimization: {
-        minimize: false,
+        minimize: false
     },
     resolve: {
         extensions: ['.riot', '.scss', '.ts', '.tsx', '.js'],
@@ -30,9 +30,7 @@ export default {
             bootstrap$: path.resolve(__dirname, 'shims/bootstrap.js')
         }
     },
-    plugins: [
-        new MiniCssExtractPlugin({ filename: '[name].css' })
-    ],
+    plugins: [new MiniCssExtractPlugin({ filename: '[name].css' })],
     module: {
         rules: [
             {
@@ -43,7 +41,7 @@ export default {
             {
                 test: /\.ts(x?)$/,
                 exclude: /node_modules/,
-                use: 'ts-loader',
+                use: 'ts-loader'
             },
             {
                 test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,

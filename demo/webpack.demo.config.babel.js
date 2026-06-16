@@ -3,7 +3,7 @@ import path from 'path';
 export default {
     mode: 'development',
     entry: {
-        'demo': path.join(__dirname, './demo.ts')
+        demo: path.join(__dirname, './demo.ts')
     },
     resolve: {
         extensions: ['.riot', '.scss', '.ts', '.tsx', '.js']
@@ -18,7 +18,7 @@ export default {
             {
                 test: /\.ts(x?)$/,
                 exclude: /node_modules/,
-                use: 'ts-loader',
+                use: 'ts-loader'
             },
             {
                 test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
@@ -51,7 +51,7 @@ export default {
         client: {
             overlay: {
                 warnings: false
-            },
+            }
         },
         compress: true,
         hot: true,
@@ -59,4 +59,4 @@ export default {
         port: 8081,
         historyApiFallback: true
     }
-}
+};

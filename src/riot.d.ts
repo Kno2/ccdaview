@@ -1,4 +1,4 @@
 declare module '*.riot' {
-    const component: any;
+    const component: import('riot').RiotComponentWrapper<import('riot').RiotComponent>;
     export default component;
 }

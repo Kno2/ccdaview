@@ -1,9 +1,10 @@
-import { Section } from './section';
+import { Document } from './document';
 import { Preferences } from './preferences';
+import { Section } from './section';
 
 export class ViewerOptions {
     public sections: Array<Section>;
-    public data: any;
+    public data: unknown;
     public pref: Preferences;
-    public documents?: Array<any>;
+    public documents?: Array<Document>;
 }

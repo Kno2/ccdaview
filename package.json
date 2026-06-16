@@ -1,59 +1,67 @@
 {
-  "name": "@kno2/ccdaview",
-  "version": "0.0.0",
-  "main": "dist/sialia.js",
-  "module": "dist/sialia.js",
-  "typings": "dist/index",
-  "files": [
-    "dist/"
-  ],
-  "license": "Apache-2.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Kno2/ccdaview.git"
-  },
-  "scripts": {
-    "start": "webpack-dev-server --config demo/webpack.demo.config.babel.js --mode development",
-    "build": "webpack --mode production",
-    "preinstall": "npm whoami || npm login"
-  },
-  "peerDependencies": {
-    "bootstrap": "^4.2.1",
-    "jquery": "^3.7.1"
-  },
-  "dependencies": {
-    "@kno2/bluebutton": "0.6.13",
-    "autoprefixer": "10.4.23",
-    "core-js": "3.47.0",
-    "date-fns": "4.1.0",
-    "dragula": "3.7.3",
-    "font-awesome": "4.7.0",
-    "lodash": "4.18.1",
-    "popper.js": "1.16.1",
-    "riot": "10.1.2"
-  },
-  "devDependencies": {
-    "@babel/core": "7.28.5",
-    "@babel/preset-env": "7.28.5",
-    "@babel/register": "7.28.3",
-    "@kno2/eslint-config": "1.2.1",
-    "@riotjs/compiler": "10.0.1",
-    "@riotjs/hot-reload": "10.0.0",
-    "@riotjs/webpack-loader": "10.0.0",
-    "@types/lodash": "4.17.21",
-    "@types/node": "24.10.4",
-    "babel-loader": "10.0.0",
-    "bootswatch": "4.6.0",
-    "css-loader": "7.1.2",
-    "mini-css-extract-plugin": "2.9.4",
-    "postcss-loader": "8.2.0",
-    "sass": "1.97.0",
-    "sass-loader": "16.0.6",
-    "style-loader": "4.0.0",
-    "ts-loader": "9.5.4",
-    "typescript": "5.9.3",
-    "webpack": "5.104.1",
-    "webpack-cli": "6.0.1",
-    "webpack-dev-server": "5.2.2"
-  }
+    "name": "@kno2/ccdaview",
+    "version": "0.0.0",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Kno2/ccdaview.git"
+    },
+    "files": [
+        "dist/"
+    ],
+    "main": "dist/sialia.js",
+    "module": "dist/sialia.js",
+    "typings": "dist/index",
+    "scripts": {
+        "start": "webpack-dev-server --config demo/webpack.demo.config.babel.js --mode development",
+        "build": "webpack --mode production",
+        "lint": "oxlint ./src/",
+        "lint:fix": "oxlint ./src/ --fix",
+        "format": "oxfmt",
+        "format:check": "oxfmt --check",
+        "install-hooks": "node ./utils/install-git-hooks.js",
+        "preinstall": "npm whoami || npm login",
+        "postinstall": "npm run install-hooks"
+    },
+    "dependencies": {
+        "@kno2/bluebutton": "0.6.14",
+        "autoprefixer": "10.4.23",
+        "core-js": "3.47.0",
+        "date-fns": "4.1.0",
+        "dragula": "3.7.3",
+        "font-awesome": "4.7.0",
+        "lodash": "4.18.1",
+        "popper.js": "1.16.1",
+        "riot": "10.1.2"
+    },
+    "devDependencies": {
+        "@babel/core": "7.28.5",
+        "@babel/preset-env": "7.28.5",
+        "@babel/register": "7.28.3",
+        "@kno2/oxlint-config": "1.0.5",
+        "@riotjs/compiler": "10.0.1",
+        "@riotjs/hot-reload": "10.0.0",
+        "@riotjs/webpack-loader": "10.0.0",
+        "@types/lodash": "4.17.21",
+        "@types/node": "24.10.4",
+        "babel-loader": "10.0.0",
+        "bootswatch": "4.6.0",
+        "css-loader": "7.1.2",
+        "mini-css-extract-plugin": "2.9.4",
+        "oxfmt": "0.55.0",
+        "oxlint": "1.70.0",
+        "postcss-loader": "8.2.0",
+        "sass": "1.97.0",
+        "sass-loader": "16.0.6",
+        "style-loader": "4.0.0",
+        "ts-loader": "9.5.4",
+        "typescript": "5.9.3",
+        "webpack": "5.104.1",
+        "webpack-cli": "6.0.1",
+        "webpack-dev-server": "5.2.4"
+    },
+    "peerDependencies": {
+        "bootstrap": "^4.2.1",
+        "jquery": "^3.7.1"
+    }
 }
