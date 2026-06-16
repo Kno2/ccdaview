@@ -1,9 +1,8 @@
-import { ViewerOptions, Preferences, DocType } from '../models';
 import _ from 'lodash';
+import { ViewerOptions, Preferences, DocType } from '../models';
 
-export class PreferencesService  {
+export class PreferencesService {
     public save(opts: ViewerOptions): void {
-
         const enabled = _.filter(opts.sections, (item) => {
             return item.enabled;
         });
@@ -24,11 +23,10 @@ export class PreferencesService  {
     }
 
     public getPreferences(docType: DocType): Preferences {
-
         const id = docType.templateId;
         const storageId = 'doc_' + id;
         const prefString = localStorage.getItem(storageId);
-        
+
         let pref = JSON.parse(prefString);
         const isSet = pref !== null;
 

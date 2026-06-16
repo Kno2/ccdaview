@@ -1,0 +1,15 @@
+{
+    "$schema": "./node_modules/oxfmt/configuration_schema.json",
+    "printWidth": 160,
+    "tabWidth": 4,
+    "endOfLine": "crlf",
+    "semi": true,
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "bracketSameLine": true,
+    "singleAttributePerLine": true,
+    "htmlWhitespaceSensitivity": "ignore",
+    "insertFinalNewline": true,
+    "sortImports": { "newlinesBetween": false },
+    "singleQuote": true
+}

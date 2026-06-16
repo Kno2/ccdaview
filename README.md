@@ -5,11 +5,13 @@ Sialia is an embeddable C-CDA rendering library. It breaks down CDA documents in
 ### Installation
 
 **npm**
+
 ```bash
 npm add github:Kno2/sialia
 ```
 
 **npm**
+
 ```bash
 npm install --save github:Kno2/sialia
 ```
@@ -20,24 +22,28 @@ npm install --save github:Kno2/sialia
 import { Sialia } from 'sialia';
 
 ctrl.sialia = new Sialia({
-    docs: [{
-        name: 'Document Name',
-        url: '/path/to/cda.xml'
-    }]
+    docs: [
+        {
+            name: 'Document Name',
+            url: '/path/to/cda.xml'
+        }
+    ]
 });
 ```
 
-The `docs` property is an array of document objects containing a `name` and `url`.  Each URL would return an XML CDA document with a mime type of `text/html; charset=utf-8`.  Here is an example docs array object:
+The `docs` property is an array of document objects containing a `name` and `url`. Each URL would return an XML CDA document with a mime type of `text/html; charset=utf-8`. Here is an example docs array object:
 
 ```javascript
-[{
-  name: "CCD_1",
-  url: "http://sialia.ria.ms:80/file/CCD_1"
-},
-{
-  name: "Doc2",
-  url: "http://sialia.ria.ms:80/file/Doc2"
-}]
+[
+    {
+        name: 'CCD_1',
+        url: 'http://sialia.ria.ms:80/file/CCD_1'
+    },
+    {
+        name: 'Doc2',
+        url: 'http://sialia.ria.ms:80/file/Doc2'
+    }
+];
 ```
 
 ### Building
