@@ -78,7 +78,7 @@ export const languages: Record<string, string> = {
     grn: 'Guarani',
     gu: 'Gujarati',
     guj: 'Gujarati',
-    // marker - need iso 639-2 for remaining langages
+    // marker - need iso 639-2 for remaining languages
     gv: 'Gaelic (Manx)',
     ha: 'Hausa',
     he: 'Hebrew',
