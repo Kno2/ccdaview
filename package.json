@@ -21,7 +21,7 @@
         "format:check": "oxfmt --check",
         "install-hooks": "node ./utils/install-git-hooks.js",
         "preinstall": "npm whoami || npm login",
-        "postinstall": "npm run install-hooks"
+        "prepare": "npm run install-hooks"
     },
     "dependencies": {
         "@kno2/bluebutton": "0.6.14",
