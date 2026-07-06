@@ -6,6 +6,7 @@ on:
 jobs:
     lint:
         name: Lint
+        if: github.event.pull_request.user.login != 'dependabot[bot]'
         runs-on: ubuntu-latest
         permissions:
             contents: read
@@ -16,7 +17,7 @@ jobs:
             - name: Set up Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: '24.x'
+                  node-version-file: '.nvmrc'
                   cache: 'npm'
             - name: Configure NPM authentication
               if: ${{ env.NPM_TOKEN != '' }}
