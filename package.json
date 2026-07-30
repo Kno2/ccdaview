@@ -48,7 +48,7 @@
         "bootswatch": "4.6.0",
         "css-loader": "7.1.2",
         "mini-css-extract-plugin": "2.9.4",
-        "oxfmt": "0.61.0",
+        "oxfmt": "0.57.0",
         "oxlint": "1.72.0",
         "postcss-loader": "8.2.0",
         "sass": "1.97.0",
