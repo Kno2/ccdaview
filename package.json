@@ -29,9 +29,7 @@
         "core-js": "3.47.0",
         "date-fns": "4.1.0",
         "dragula": "3.7.3",
-        "font-awesome": "4.7.0",
         "lodash": "4.18.1",
-        "popper.js": "1.16.1",
         "riot": "10.1.2"
     },
     "devDependencies": {
@@ -45,7 +43,6 @@
         "@types/lodash": "4.17.21",
         "@types/node": "24.10.4",
         "babel-loader": "10.1.1",
-        "bootswatch": "4.6.0",
         "css-loader": "7.1.2",
         "mini-css-extract-plugin": "2.9.4",
         "oxfmt": "0.57.0",
@@ -61,7 +58,8 @@
         "webpack-dev-server": "5.2.6"
     },
     "peerDependencies": {
-        "bootstrap": "^4.2.1",
+        "bootstrap": "^5.3.0",
+        "font-awesome": "^4.7.0",
         "jquery": "^3.7.1"
     }
 }
