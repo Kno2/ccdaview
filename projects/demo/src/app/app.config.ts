@@ -23,7 +23,7 @@ const NoirLara = definePreset(Lara, {
             light: {
                 primary: {
                     color: "{zinc.950}",
-                    inverseColor: "#ffffff",
+                    contrastColor: "#ffffff",
                     hoverColor: "{zinc.900}",
                     activeColor: "{zinc.800}"
                 },
@@ -37,7 +37,7 @@ const NoirLara = definePreset(Lara, {
             dark: {
                 primary: {
                     color: "{zinc.50}",
-                    inverseColor: "{zinc.950}",
+                    contrastColor: "{zinc.950}",
                     hoverColor: "{zinc.100}",
                     activeColor: "{zinc.200}"
                 },
