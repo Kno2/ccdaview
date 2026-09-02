@@ -87,6 +87,7 @@ interface CdaPreferenceRow {
 
             h2 {
                 font-size: 2rem;
+                line-height: 1.2;
                 font-weight: 500;
                 margin: 0;
             }
