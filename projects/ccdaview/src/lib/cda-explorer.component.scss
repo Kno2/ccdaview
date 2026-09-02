@@ -1,0 +1,223 @@
+:host {
+    display: block;
+}
+
+.cda-explorer {
+    height: 600px;
+    overflow-y: auto;
+    border: 1px solid var(--p-content-border-color, #d4d4d8);
+    border-radius: var(--p-content-border-radius, 6px);
+    background: var(--p-content-background, #ffffff);
+}
+
+p-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.cda-nav-toggler {
+    display: none;
+}
+
+.cda-nav-items {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+@media (max-width: 991.98px) {
+    .cda-nav-toggler {
+        display: inline-flex;
+    }
+
+    .cda-nav-items {
+        display: none;
+
+        &.cda-nav-open {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+    }
+}
+
+.cda-title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.cda-patient {
+    color: var(--p-text-muted-color, #71717a);
+    font-weight: 400;
+    margin-left: 0.25rem;
+}
+
+.cda-muted {
+    color: var(--p-text-muted-color, #71717a);
+    font-weight: 400;
+}
+
+.cda-body {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    align-items: flex-start;
+}
+
+.cda-demographics {
+    flex: 0 0 33%;
+    min-width: 0;
+}
+
+.cda-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.cda-demographics-header {
+    min-width: 0;
+
+    .cda-patient-name {
+        font-size: 2rem;
+        font-weight: 500;
+        margin: 0 0 0.75rem;
+    }
+}
+
+.cda-demographics ::ng-deep {
+    .p-panel {
+        border-radius: 2px;
+    }
+
+    .p-panel-header {
+        background: var(--p-surface-100, #f5f5f5);
+        border-radius: 2px 2px 0 0;
+    }
+}
+
+.cda-facts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+
+    li {
+        display: flex;
+        gap: 0.5rem;
+        align-items: baseline;
+    }
+
+    i {
+        flex: none;
+        width: 1rem;
+        text-align: center;
+        color: var(--p-text-muted-color, #71717a);
+    }
+
+    p,
+    address {
+        margin: 0;
+        font-style: normal;
+    }
+}
+
+p-accordion-panel.cda-section {
+    display: block;
+    scroll-margin-top: 64px;
+    margin-bottom: 21px;
+    border: 1px solid var(--p-surface-300, #dddddd);
+    border-radius: 2px;
+    background: var(--p-content-background, #ffffff);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.cda-section ::ng-deep {
+    .p-accordionheader {
+        background: var(--p-surface-100, #f5f5f5);
+        border-radius: 1px;
+        padding: 10px 15px;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .p-accordioncontent-content {
+        padding: 15px;
+    }
+}
+
+.cda-section-empty {
+    opacity: 0.45;
+}
+
+.cda-section-header {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.cda-narrative {
+    overflow-x: auto;
+
+    ::ng-deep {
+        ul,
+        ol {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        span[id^="problem" i] {
+            display: block;
+            font-weight: 700;
+        }
+
+        .cda-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 0 0.75rem;
+        }
+
+        .cda-table th,
+        .cda-table td {
+            border: 1px solid var(--p-content-border-color, #d4d4d8);
+            padding: 0.4rem 0.6rem;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .cda-table thead th {
+            background: var(--p-surface-100, #f4f4f5);
+        }
+
+        .cda-table tbody tr:nth-child(even) {
+            background: var(--p-surface-50, #fafafa);
+        }
+
+        .cda-bold {
+            font-weight: 700;
+        }
+
+        .cda-italics,
+        .cda-emphasis {
+            font-style: italic;
+        }
+
+        .cda-underline {
+            text-decoration: underline;
+        }
+
+        .cda-revised-delete {
+            text-decoration: line-through;
+        }
+
+        .cda-revised-insert {
+            text-decoration: underline;
+        }
+    }
+}

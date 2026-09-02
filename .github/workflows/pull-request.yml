@@ -4,8 +4,8 @@ on:
     pull_request:
 
 jobs:
-    lint:
-        name: Lint
+    verify:
+        name: Verify
         if: github.event.pull_request.user.login != 'dependabot[bot]'
         runs-on: ubuntu-latest
         permissions:
@@ -26,3 +26,9 @@ jobs:
               run: npm ci --ignore-scripts
             - name: Lint
               run: npm run lint
+            - name: Format check
+              run: npm run format:check
+            - name: Build library
+              run: npm run build
+            - name: Test
+              run: npm run test:ci

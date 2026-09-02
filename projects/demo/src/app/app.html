@@ -1,0 +1,14 @@
+<header class="demo-header">
+    <h1>CDA Explorer</h1>
+    <p-select
+        [options]="documents"
+        [ngModel]="selected()"
+        (ngModelChange)="selected.set($event)" />
+</header>
+<main class="demo-main">
+    @if (content.hasValue()) {
+    <kno2-cda-explorer [content]="content.value()" />
+    } @else if (content.error()) {
+    <p>The sample document could not be loaded.</p>
+    }
+</main>

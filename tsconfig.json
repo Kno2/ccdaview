@@ -1,18 +1,35 @@
 {
+    "compileOnSave": false,
     "compilerOptions": {
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "module": "commonjs",
-        "target": "es5",
-        "noImplicitAny": false,
-        "sourceMap": true,
-        "declaration": true,
-        "declarationDir": "dist",
-        "outDir": "dist",
-        "lib": ["es2016", "dom"]
+        "paths": {
+            "@kno2/ccdaview": ["./projects/ccdaview/src/public-api.ts"]
+        },
+        "noImplicitOverride": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "skipLibCheck": true,
+        "isolatedModules": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "ES2022",
+        "module": "preserve"
     },
-    "exclude": ["node_modules", "dist"],
-    "include": ["src/**/*"],
-    // Atom settings
-    "compileOnSave": false
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true
+    },
+    "files": [],
+    "references": [
+        {
+            "path": "./projects/ccdaview/tsconfig.lib.json"
+        },
+        {
+            "path": "./projects/ccdaview/tsconfig.spec.json"
+        },
+        {
+            "path": "./projects/demo/tsconfig.app.json"
+        }
+    ]
 }

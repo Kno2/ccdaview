@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-console.log('Installing git pre-commit hook...');
+console.log("Installing git pre-commit hook...");
 
-const hookPath = path.join('.git', 'hooks', 'pre-commit');
+const hookPath = path.join(".git", "hooks", "pre-commit");
 
 const hookContent = `#!/bin/sh
 
@@ -31,9 +31,9 @@ try {
     // Write the hook file
     fs.writeFileSync(hookPath, hookContent, { mode: 0o755 });
 
-    console.log('Git pre-commit hook installed successfully!');
-    console.log('The hook will now run oxfmt on staged files before each commit.');
+    console.log("Git pre-commit hook installed successfully!");
+    console.log("The hook will now run oxfmt on staged files before each commit.");
 } catch (error) {
-    console.error('Failed to install git hook:', error.message);
+    console.error("Failed to install git hook:", error.message);
     process.exit(1);
 }

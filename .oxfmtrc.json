@@ -10,6 +10,7 @@
     "singleAttributePerLine": true,
     "htmlWhitespaceSensitivity": "ignore",
     "insertFinalNewline": true,
+    "singleQuote": false,
     "sortImports": { "newlinesBetween": false },
-    "singleQuote": true
+    "ignorePatterns": ["*.yml", "*.yaml", "dist", "docs", "out-tsc"]
 }

@@ -10,16 +10,16 @@ permissions:
 
 jobs:
     npm:
-        runs-on: windows-latest
+        runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
-            - uses: actions/setup-node@v2
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
               with:
-                  node-version: '24.x'
+                  node-version-file: '.nvmrc'
                   registry-url: https://registry.npmjs.org/
             - name: Set Git Version
               id: set-git-version
-              uses: actions/github-script@v3
+              uses: actions/github-script@v7
               with:
                   script: return context.ref.replace(/refs\/tags\//, '')
                   result-encoding: string
@@ -28,4 +28,6 @@ jobs:
                   NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
             - run: npm run build
             - run: npm version --new-version ${{steps.set-git-version.outputs.result}} --no-git-tag-version
+              working-directory: dist/ccdaview
             - run: npm publish
+              working-directory: dist/ccdaview

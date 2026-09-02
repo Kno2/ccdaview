@@ -53,3 +53,12 @@ dist
 
 ## ai
 .claude/
+
+# Angular
+.angular/
+out-tsc/
+test-results/
+
+# Local environment
+.env
+*.tgz

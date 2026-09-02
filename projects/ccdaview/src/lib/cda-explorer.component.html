@@ -1,0 +1,183 @@
+<div
+    #scrollBox
+    class="cda-explorer">
+    @if (error()) {
+        <p-message
+            severity="error"
+            styleClass="cda-alert">
+            {{ error() }}
+        </p-message>
+    } @else if (document(); as doc) {
+        <p-toolbar>
+            <ng-template #start>
+                <span class="cda-title">
+                    {{ doc.title }}
+                    <span class="cda-patient">{{ patientName() }}</span>
+                </span>
+            </ng-template>
+            <ng-template #end>
+                @if (!doc.nonXmlBody) {
+                    <p-button
+                        class="cda-nav-toggler"
+                        icon="fa fa-bars"
+                        [text]="true"
+                        ariaLabel="Toggle navigation"
+                        (onClick)="navOpen.set(!navOpen())" />
+                    <div
+                        class="cda-nav-items"
+                        [class.cda-nav-open]="navOpen()">
+                        @if (sections().length) {
+                            <p-button
+                                label="Jump to"
+                                icon="fa fa-caret-down"
+                                iconPos="right"
+                                [text]="true"
+                                (onClick)="jumpToMenu.toggle($event)" />
+                            <p-menu
+                                #jumpToMenu
+                                [model]="jumpToItems()"
+                                [popup]="true"
+                                appendTo="body" />
+                        }
+                        <p-button
+                            icon="fa fa-cog"
+                            [text]="true"
+                            ariaLabel="Section preferences"
+                            (onClick)="preferencesVisible.set(!preferencesVisible())" />
+                    </div>
+                }
+            </ng-template>
+        </p-toolbar>
+        <div class="cda-body">
+            <div class="cda-demographics">
+                <p-panel [toggleable]="true">
+                    <ng-template #header>
+                        <div class="cda-demographics-header">
+                            <h2 class="cda-patient-name">{{ patientName() }}</h2>
+                            <ul class="cda-facts">
+                                @if (doc.demographics.dob) {
+                                    <li>
+                                        <i
+                                            class="fa fa-birthday-cake"
+                                            title="DOB"
+                                            aria-hidden="true"></i>
+                                        {{ doc.demographics.dob | date: "MMM d, y" }}
+                                    </li>
+                                }
+                                @if (doc.demographics.guardian.name.family) {
+                                    <li>
+                                        <i
+                                            class="fa fa-child"
+                                            title="Guardian"
+                                            aria-hidden="true"></i>
+                                        {{ guardianName() }}
+                                        <span class="cda-muted">(guardian)</span>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </ng-template>
+                    <ul class="cda-facts">
+                        <li>
+                            <i
+                                class="fa"
+                                [class.fa-female]="doc.demographics.gender === 'female'"
+                                [class.fa-male]="doc.demographics.gender === 'male'"
+                                title="Demographics"
+                                aria-hidden="true"></i>
+                            <p>
+                                <strong>{{ doc.demographics.name.given[0] }}</strong>
+                                is a
+                                <strong>{{ doc.demographics.maritalStatus }} {{ doc.demographics.race }} {{ doc.demographics.gender }}</strong>
+                                whose religion is
+                                <strong>{{ doc.demographics.religion || "unspecified" }}</strong>
+                                and speaks
+                                <strong>{{ language() }}.</strong>
+                            </p>
+                        </li>
+                        @if (hasAddress()) {
+                            <li>
+                                <i
+                                    class="fa fa-map-marker"
+                                    title="Address"
+                                    aria-hidden="true"></i>
+                                <address>
+                                    @if (doc.demographics.address.street[0]) {
+                                        {{ doc.demographics.address.street[0] }}
+                                        <br />
+                                    }
+                                    @if (doc.demographics.address.city) {
+                                        {{ doc.demographics.address.city + ", " }}
+                                    }
+                                    {{ doc.demographics.address.state }} {{ doc.demographics.address.zip }}
+                                </address>
+                            </li>
+                        }
+                        @if (phone()) {
+                            <li>
+                                <i
+                                    class="fa fa-phone"
+                                    title="Phone"
+                                    aria-hidden="true"></i>
+                                {{ phone() }}
+                            </li>
+                        }
+                        @if (doc.demographics.providerOrganization) {
+                            <li>
+                                <i
+                                    class="fa fa-building"
+                                    title="Provider"
+                                    aria-hidden="true"></i>
+                                {{ doc.demographics.providerOrganization }}
+                            </li>
+                        }
+                    </ul>
+                </p-panel>
+            </div>
+            <div class="cda-content">
+                @if (doc.nonXmlBody; as nonXmlBody) {
+                    <p-message severity="info">
+                        The clinical document you are viewing has an attached document
+                        <b>{{ nonXmlBody.reference }}.</b>
+                        Please download the document through your EMR.
+                    </p-message>
+                } @else if (preferencesVisible()) {
+                    <kno2-cda-preferences-panel
+                        [sections]="orderedSections()"
+                        [preferences]="preferences()"
+                        (savePreferences)="savePreferences($event)" />
+                } @else {
+                    <p-accordion
+                        [(value)]="expandedKeys"
+                        [multiple]="true">
+                        @for (section of sections(); track section.key) {
+                            <p-accordion-panel
+                                class="cda-section"
+                                [class.cda-section-empty]="section.empty"
+                                [value]="section.key"
+                                [disabled]="section.empty"
+                                [id]="section.key">
+                                <p-accordion-header>
+                                    <span class="cda-section-header">
+                                        <i
+                                            class="fa fa-{{ section.icon }}"
+                                            aria-hidden="true"></i>
+                                        {{ section.display }}
+                                        @if (section.empty) {
+                                            <span class="cda-muted">(empty)</span>
+                                        }
+                                    </span>
+                                </p-accordion-header>
+                                <p-accordion-content>
+                                    <div
+                                        class="cda-narrative"
+                                        [kno2CdaNarrative]="section.narrative"></div>
+                                </p-accordion-content>
+                            </p-accordion-panel>
+                        }
+                    </p-accordion>
+                }
+            </div>
+        </div>
+    }
+</div>

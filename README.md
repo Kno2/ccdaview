@@ -1,72 +1,41 @@
-# SialiaJS
+# @kno2/ccdaview
 
-Sialia is an embeddable C-CDA rendering library. It breaks down CDA documents into sections, allowing clinical users to order and select sections that are relevant to their job.
+An Angular library for exploring C-CDA clinical documents. `CdaExplorerComponent` parses a CDA document and renders its header, patient demographics, and narrative sections with expand/collapse, jump-to navigation, and per-document-type section preferences persisted to `localStorage`.
 
-### Installation
+This is a ground-up Angular rewrite that replaced the original riot.js viewer (sialia) and its bluebutton.js parser.
 
-**npm**
+## Usage
 
-```bash
-npm add github:Kno2/sialia
+```html
+<kno2-cda-explorer [content]="xmlString" />
 ```
 
-**npm**
+The host application must provide:
 
-```bash
-npm install --save github:Kno2/sialia
+- PrimeNG 22 with a configured theme (`providePrimeNG`)
+- Font Awesome 4 icon classes (`fa fa-*`)
+
+Peer dependencies: `@angular/common`, `@angular/core`, `@angular/forms`, `@angular/cdk`, `primeng`.
+
+## Development
+
+Requires the Node version in `.nvmrc` and access to the `@kno2` npm scope.
+
+```
+npm install
+npm start          # demo app at http://localhost:4200
+npm run build      # builds the library to dist/ccdaview
+npm run test:ci    # vitest suite
+npm run lint
+npm run format
 ```
 
-### Usage
+The demo app loads the sample documents in `docs/` and needs a PrimeNG license key in a `.env` file at the repo root:
 
-```javascript
-import { Sialia } from 'sialia';
-
-ctrl.sialia = new Sialia({
-    docs: [
-        {
-            name: 'Document Name',
-            url: '/path/to/cda.xml'
-        }
-    ]
-});
+```
+CCDAVIEW_PRIMENG_LICENSE=<license key>
 ```
 
-The `docs` property is an array of document objects containing a `name` and `url`. Each URL would return an XML CDA document with a mime type of `text/html; charset=utf-8`. Here is an example docs array object:
+## Publishing
 
-```javascript
-[
-    {
-        name: 'CCD_1',
-        url: 'http://sialia.ria.ms:80/file/CCD_1'
-    },
-    {
-        name: 'Doc2',
-        url: 'http://sialia.ria.ms:80/file/Doc2'
-    }
-];
-```
-
-### Building
-
-```bash
-npm
-npm build
-```
-
-### Development
-
-To use a development server and watch for file changes, run the following command:
-
-```bash
-npm start
-```
-
-### BlueButton Updates
-
-Sialia relies on a forked version of bluebutton.js:
-
-https://github.com/Kno2/bluebutton.js
-
-## License
-
-Licensed under Apache 2 - see [License](LICENSE.md)
+Publishing happens from CI when a GitHub release is created; the release tag becomes the npm version of the built package in `dist/ccdaview`.

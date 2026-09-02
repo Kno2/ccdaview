@@ -1,0 +1,108 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "cli": {
+        "packageManager": "npm"
+    },
+    "newProjectRoot": "projects",
+    "projects": {
+        "ccdaview": {
+            "projectType": "library",
+            "root": "projects/ccdaview",
+            "sourceRoot": "projects/ccdaview/src",
+            "prefix": "kno2",
+            "architect": {
+                "build": {
+                    "builder": "@angular/build:ng-packagr",
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/ccdaview/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "projects/ccdaview/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@angular/build:unit-test",
+                    "options": {
+                        "tsConfig": "projects/ccdaview/tsconfig.spec.json",
+                        "runnerConfig": "vitest.config.ts"
+                    }
+                }
+            }
+        },
+        "demo": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
+                }
+            },
+            "root": "projects/demo",
+            "sourceRoot": "projects/demo/src",
+            "prefix": "demo",
+            "architect": {
+                "build": {
+                    "builder": "@ngx-env/builder:application",
+                    "options": {
+                        "browser": "projects/demo/src/main.ts",
+                        "tsConfig": "projects/demo/tsconfig.app.json",
+                        "inlineStyleLanguage": "scss",
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "projects/demo/public"
+                            },
+                            {
+                                "glob": "*.xml",
+                                "input": "docs",
+                                "output": "docs"
+                            }
+                        ],
+                        "styles": ["node_modules/font-awesome/css/font-awesome.css", "projects/demo/src/styles.scss"],
+                        "ngxEnv": {
+                            "prefix": "CCDAVIEW_"
+                        }
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2MB",
+                                    "maximumError": "3MB"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "8kB",
+                                    "maximumError": "16kB"
+                                }
+                            ],
+                            "outputHashing": "all"
+                        },
+                        "development": {
+                            "optimization": false,
+                            "extractLicenses": false,
+                            "sourceMap": true
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "builder": "@ngx-env/builder:dev-server",
+                    "configurations": {
+                        "production": {
+                            "buildTarget": "demo:build:production"
+                        },
+                        "development": {
+                            "buildTarget": "demo:build:development"
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                }
+            }
+        }
+    }
+}
