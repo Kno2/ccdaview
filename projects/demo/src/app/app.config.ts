@@ -57,7 +57,7 @@ export const appConfig: ApplicationConfig = {
         provideBrowserGlobalErrorListeners(),
         provideHttpClient(),
         providePrimeNG({
-            license: import.meta.env.CCDAVIEW_PRIMENG_LICENSE,
+            license: import.meta.env.KNO2FY_WEB_PRIMENG_LICENSE,
             theme: {
                 preset: NoirLara,
                 options: {

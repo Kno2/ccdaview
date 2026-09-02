@@ -30,11 +30,7 @@ npm run lint
 npm run format
 ```
 
-The demo app loads the sample documents in `docs/` and needs a PrimeNG license key in a `.env` file at the repo root:
-
-```
-CCDAVIEW_PRIMENG_LICENSE=<license key>
-```
+The demo app loads the sample documents in `docs/` and reads the PrimeNG license key from the `KNO2FY_WEB_PRIMENG_LICENSE` environment variable (the same one kno2fy-web development uses).
 
 ## Publishing
 

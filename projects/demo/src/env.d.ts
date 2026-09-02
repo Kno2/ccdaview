@@ -1,5 +1,5 @@
 interface ImportMetaEnv {
-    readonly CCDAVIEW_PRIMENG_LICENSE: string;
+    readonly KNO2FY_WEB_PRIMENG_LICENSE: string;
 }
 
 interface ImportMeta {
