@@ -147,35 +147,31 @@
                         [preferences]="preferences()"
                         (savePreferences)="savePreferences($event)" />
                 } @else {
-                    <p-accordion
-                        [(value)]="expandedKeys"
-                        [multiple]="true">
-                        @for (section of sections(); track section.key) {
-                            <p-accordion-panel
-                                class="cda-section"
-                                [class.cda-section-empty]="section.empty"
-                                [value]="section.key"
-                                [disabled]="section.empty"
-                                [id]="section.key">
-                                <p-accordion-header>
-                                    <span class="cda-section-header">
-                                        <i
-                                            class="fa fa-{{ section.icon }}"
-                                            aria-hidden="true"></i>
-                                        {{ section.display }}
-                                        @if (section.empty) {
-                                            <span class="cda-muted">(empty)</span>
-                                        }
-                                    </span>
-                                </p-accordion-header>
-                                <p-accordion-content>
-                                    <div
-                                        class="cda-narrative"
-                                        [kno2CdaNarrative]="section.narrative"></div>
-                                </p-accordion-content>
-                            </p-accordion-panel>
-                        }
-                    </p-accordion>
+                    @for (section of sections(); track section.key) {
+                        <p-panel
+                            class="cda-section"
+                            [class.cda-section-empty]="section.empty"
+                            [id]="section.key"
+                            toggler="header"
+                            [toggleable]="!section.empty"
+                            [collapsed]="!expandedKeys().includes(section.key)"
+                            (collapsedChange)="setSectionExpanded(section.key, !$event)">
+                            <ng-template #header>
+                                <span class="cda-section-header">
+                                    <i
+                                        class="fa fa-{{ section.icon }}"
+                                        aria-hidden="true"></i>
+                                    {{ section.display }}
+                                    @if (section.empty) {
+                                        <span class="cda-muted">(empty)</span>
+                                    }
+                                </span>
+                            </ng-template>
+                            <div
+                                class="cda-narrative"
+                                [kno2CdaNarrative]="section.narrative"></div>
+                        </p-panel>
+                    }
                 }
             </div>
         </div>

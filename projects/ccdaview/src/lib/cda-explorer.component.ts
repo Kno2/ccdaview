@@ -1,6 +1,5 @@
 import { DatePipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, computed, ElementRef, inject, input, linkedSignal, signal, viewChild } from "@angular/core";
-import { AccordionModule } from "primeng/accordion";
 import { MenuItem } from "primeng/api";
 import { ButtonModule } from "primeng/button";
 import { MenuModule } from "primeng/menu";
@@ -19,17 +18,7 @@ type CdaExplorerSection = CdaSection & { empty: boolean };
 @Component({
     selector: "kno2-cda-explorer",
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        DatePipe,
-        AccordionModule,
-        ButtonModule,
-        MenuModule,
-        MessageModule,
-        PanelModule,
-        ToolbarModule,
-        CdaNarrativeDirective,
-        CdaPreferencesPanelComponent
-    ],
+    imports: [DatePipe, ButtonModule, MenuModule, MessageModule, PanelModule, ToolbarModule, CdaNarrativeDirective, CdaPreferencesPanelComponent],
     templateUrl: "./cda-explorer.component.html",
     styleUrl: "./cda-explorer.component.scss"
 })
@@ -112,6 +101,11 @@ export class CdaExplorerComponent {
         if (!address) return false;
         return !!(address.street[0] || address.city || address.state || address.zip);
     });
+
+    protected setSectionExpanded(key: string, expanded: boolean): void {
+        const keys = this.expandedKeys().filter((existing) => existing !== key);
+        this.expandedKeys.set(expanded ? [...keys, key] : keys);
+    }
 
     protected jumpTo(key: string): void {
         this.host.nativeElement.querySelector(`[id="${key}"]`)?.scrollIntoView();

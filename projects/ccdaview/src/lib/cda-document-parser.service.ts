@@ -32,7 +32,40 @@ const SECTION_KEYS_BY_TEMPLATE_ID: Record<string, string> = {
     "2.16.840.1.113883.10.20.22.2.18": "payers",
     "2.16.840.1.113883.10.20.22.2.60": "goals",
     "2.16.840.1.113883.10.20.21.2.3": "interventions",
-    "2.16.840.1.113883.10.20.22.2.61": "health_status_outcomes"
+    "2.16.840.1.113883.10.20.22.2.61": "health_status_outcomes",
+    "2.16.840.1.113883.10.20.1.1": "advance_directives",
+    "2.16.840.1.113883.10.20.1.2": "allergies",
+    "2.16.840.1.113883.10.20.1.3": "encounters",
+    "2.16.840.1.113883.10.20.1.4": "family_history",
+    "2.16.840.1.113883.10.20.1.5": "functional_statuses",
+    "2.16.840.1.113883.10.20.1.6": "immunizations",
+    "2.16.840.1.113883.10.20.1.7": "medical_equipment",
+    "2.16.840.1.113883.10.20.1.8": "medications",
+    "2.16.840.1.113883.10.20.1.9": "payers",
+    "2.16.840.1.113883.10.20.1.10": "care_plan",
+    "2.16.840.1.113883.10.20.1.11": "problems",
+    "2.16.840.1.113883.10.20.1.12": "procedures",
+    "2.16.840.1.113883.10.20.1.14": "results",
+    "2.16.840.1.113883.10.20.1.15": "social_history",
+    "2.16.840.1.113883.10.20.1.16": "vitals"
+};
+
+const SECTION_KEY_ALIASES: Record<string, string> = {
+    "allergies,_adverse_reactions,_alerts": "allergies",
+    functional_status: "functional_statuses",
+    history_of_encounters: "encounters",
+    history_of_family_member_diseases: "family_history",
+    history_of_immunizations: "immunizations",
+    history_of_medication_use: "medications",
+    history_of_procedures: "procedures",
+    payer: "payers",
+    payment_sources: "payers",
+    plan_of_care: "care_plan",
+    plan_of_treatment: "care_plan",
+    problem_list: "problems",
+    "relevant_diagnostic_tests_and/or_laboratory_data": "results",
+    treatment_plan: "care_plan",
+    vital_signs: "vitals"
 };
 
 export const SECTION_META_BY_KEY: Record<string, { display: string; icon?: string }> = {
@@ -119,7 +152,8 @@ export class CdaDocumentParserService {
                 .filter((id): id is string => !!id);
             const displayName = this.attrOf(this.directChild(sectionEl, "code"), "displayName");
             const knownKey = templateIds.map((id) => SECTION_KEYS_BY_TEMPLATE_ID[id]).find((key) => !!key);
-            const key = knownKey ?? (displayName ? displayName.split(" ").join("_").toLowerCase() : null);
+            const displayNameKey = displayName ? displayName.split(" ").join("_").toLowerCase() : null;
+            const key = knownKey ?? (displayNameKey ? (SECTION_KEY_ALIASES[displayNameKey] ?? displayNameKey) : null);
 
             if (!key || seenKeys.has(key)) continue;
             seenKeys.add(key);

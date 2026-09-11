@@ -86,7 +86,7 @@ p-toolbar {
     }
 }
 
-.cda-demographics ::ng-deep {
+.cda-body ::ng-deep {
     .p-panel {
         border-radius: 2px;
     }
@@ -129,28 +129,10 @@ p-toolbar {
     }
 }
 
-p-accordion-panel.cda-section {
+p-panel.cda-section {
     display: block;
     scroll-margin-top: 64px;
     margin-bottom: 21px;
-    border: 1px solid var(--p-surface-300, #dddddd);
-    border-radius: 2px;
-    background: var(--p-content-background, #ffffff);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-}
-
-.cda-section ::ng-deep {
-    .p-accordionheader {
-        background: var(--p-surface-100, #f5f5f5);
-        border-radius: 1px;
-        padding: 10px 15px;
-        font-size: 15px;
-        font-weight: 500;
-    }
-
-    .p-accordioncontent-content {
-        padding: 15px;
-    }
 }
 
 .cda-section-empty {
@@ -161,6 +143,9 @@ p-accordion-panel.cda-section {
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.2;
 }
 
 .cda-narrative {
