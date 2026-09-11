@@ -53,11 +53,11 @@ describe("CdaDocumentParserService", () => {
             ]);
         });
 
-        it("uses known display and icon when the key is recognized, otherwise asterisk", () => {
+        it("uses known display and icon when the key is recognized, otherwise the fallback icon", () => {
             const results = doc.sections.find((s) => s.key === "results");
-            const socialHistory = doc.sections.find((s) => s.key === "social_history");
-            expect(results).toMatchObject({ display: "Results", icon: "flask" });
-            expect(socialHistory).toMatchObject({ display: "Social History", icon: "asterisk" });
+            const advanceDirectives = doc.sections.find((s) => s.key === "advance_directives");
+            expect(results).toMatchObject({ display: "Results", icon: "test-tubes" });
+            expect(advanceDirectives).toMatchObject({ display: "Advance Directives", icon: "register-book" });
         });
 
         it("captures each section's narrative element", () => {

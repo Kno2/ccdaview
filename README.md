@@ -10,12 +10,9 @@ This is a ground-up Angular rewrite that replaced the original riot.js viewer (s
 <kno2-cda-explorer [content]="xmlString" />
 ```
 
-The host application must provide:
+The host application must provide PrimeNG 22 with a configured theme (`providePrimeNG`). Icons are bundled (Health Icons, public domain) — no icon font required.
 
-- PrimeNG 22 with a configured theme (`providePrimeNG`)
-- Font Awesome 4 icon classes (`fa fa-*`)
-
-Peer dependencies: `@angular/common`, `@angular/core`, `@angular/forms`, `@angular/cdk`, `primeng`.
+Peer dependencies: `@angular/common`, `@angular/core`, `@angular/forms`, `@angular/platform-browser`, `@angular/cdk`, `primeng`.
 
 ## Development
 

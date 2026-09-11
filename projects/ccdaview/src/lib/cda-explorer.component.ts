@@ -2,12 +2,15 @@ import { DatePipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, computed, ElementRef, inject, input, linkedSignal, signal, viewChild } from "@angular/core";
 import { MenuItem } from "primeng/api";
 import { ButtonModule } from "primeng/button";
+import { BarsIcon } from "primeng/icons/bars";
+import { ChevronDownIcon } from "primeng/icons/chevrondown";
 import { MenuModule } from "primeng/menu";
 import { MessageModule } from "primeng/message";
 import { PanelModule } from "primeng/panel";
 import { ToolbarModule } from "primeng/toolbar";
 import { CdaDocumentParserService } from "./cda-document-parser.service";
 import { CdaName, CdaSection } from "./cda-document.models";
+import { CdaIconComponent } from "./cda-icon.component";
 import { LANGUAGES_BY_CODE } from "./cda-languages";
 import { CdaNarrativeDirective } from "./cda-narrative.directive";
 import { CdaPreferencesPanelComponent } from "./cda-preferences-panel.component";
@@ -18,7 +21,19 @@ type CdaExplorerSection = CdaSection & { empty: boolean };
 @Component({
     selector: "kno2-cda-explorer",
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [DatePipe, ButtonModule, MenuModule, MessageModule, PanelModule, ToolbarModule, CdaNarrativeDirective, CdaPreferencesPanelComponent],
+    imports: [
+        DatePipe,
+        BarsIcon,
+        ButtonModule,
+        ChevronDownIcon,
+        MenuModule,
+        MessageModule,
+        PanelModule,
+        ToolbarModule,
+        CdaIconComponent,
+        CdaNarrativeDirective,
+        CdaPreferencesPanelComponent
+    ],
     templateUrl: "./cda-explorer.component.html",
     styleUrl: "./cda-explorer.component.scss"
 })
@@ -73,10 +88,15 @@ export class CdaExplorerComponent {
         { separator: true },
         ...this.sections().map((section) => ({
             label: section.display,
-            icon: `fa fa-${section.icon}`,
+            icon: section.icon,
             command: (): void => this.jumpTo(section.key)
         }))
     ]);
+
+    protected readonly genderIcon = computed(() => {
+        const gender = this.document()?.demographics.gender;
+        return gender === "female" ? "woman" : gender === "male" ? "man" : "people";
+    });
 
     protected readonly patientName = computed(() => this.formatName(this.document()?.demographics.name));
     protected readonly guardianName = computed(() => this.formatName(this.document()?.demographics.guardian.name));

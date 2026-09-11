@@ -3,8 +3,10 @@ import { ChangeDetectionStrategy, Component, input, linkedSignal, output } from 
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { CheckboxModule } from "primeng/checkbox";
+import { BarsIcon } from "primeng/icons/bars";
 import { MessageModule } from "primeng/message";
 import { CdaSection } from "./cda-document.models";
+import { CdaIconComponent } from "./cda-icon.component";
 import { CdaSectionPreferences } from "./cda-preferences.service";
 
 interface CdaPreferenceRow {
@@ -17,7 +19,7 @@ interface CdaPreferenceRow {
 @Component({
     selector: "kno2-cda-preferences-panel",
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [FormsModule, ButtonModule, CheckboxModule, MessageModule, CdkDrag, CdkDragHandle, CdkDropList],
+    imports: [FormsModule, BarsIcon, ButtonModule, CheckboxModule, MessageModule, CdaIconComponent, CdkDrag, CdkDragHandle, CdkDropList],
     template: `
         <div class="cda-preferences">
             <div class="cda-preferences-header">
@@ -62,16 +64,16 @@ interface CdaPreferenceRow {
                             <span
                                 class="cda-preference-label"
                                 (click)="toggle(row)">
-                                <i
-                                    class="fa fa-{{ row.icon }}"
-                                    aria-hidden="true"></i>
+                                <kno2-cda-icon [name]="row.icon" />
                                 {{ row.display }}
                             </span>
                         </span>
-                        <i
-                            class="fa fa-bars"
+                        <span
+                            class="cda-drag-handle"
                             cdkDragHandle
-                            title="Drag to sort"></i>
+                            title="Drag to sort">
+                            <svg data-p-icon="bars"></svg>
+                        </span>
                     </li>
                 }
             </ul>
@@ -134,14 +136,13 @@ interface CdaPreferenceRow {
             .cda-preference-label {
                 cursor: pointer;
 
-                i {
+                kno2-cda-icon {
                     width: 1rem;
-                    text-align: center;
                     color: var(--p-text-muted-color, #71717a);
                 }
             }
 
-            .fa-bars {
+            .cda-drag-handle {
                 cursor: grab;
                 color: var(--p-text-muted-color, #71717a);
             }

@@ -19,31 +19,51 @@
                 @if (!doc.nonXmlBody) {
                     <p-button
                         class="cda-nav-toggler"
-                        icon="fa fa-bars"
                         [text]="true"
                         ariaLabel="Toggle navigation"
-                        (onClick)="navOpen.set(!navOpen())" />
+                        (onClick)="navOpen.set(!navOpen())">
+                        <ng-template #icon>
+                            <svg data-p-icon="bars"></svg>
+                        </ng-template>
+                    </p-button>
                     <div
                         class="cda-nav-items"
                         [class.cda-nav-open]="navOpen()">
                         @if (sections().length) {
                             <p-button
                                 label="Jump to"
-                                icon="fa fa-caret-down"
                                 iconPos="right"
                                 [text]="true"
-                                (onClick)="jumpToMenu.toggle($event)" />
+                                (onClick)="jumpToMenu.toggle($event)">
+                                <ng-template #icon>
+                                    <svg data-p-icon="chevron-down"></svg>
+                                </ng-template>
+                            </p-button>
                             <p-menu
                                 #jumpToMenu
                                 [model]="jumpToItems()"
                                 [popup]="true"
-                                appendTo="body" />
+                                appendTo="body">
+                                <ng-template
+                                    #item
+                                    let-item>
+                                    <a class="p-menu-item-link">
+                                        @if (item.icon) {
+                                            <kno2-cda-icon [name]="item.icon" />
+                                        }
+                                        <span class="p-menu-item-label">{{ item.label }}</span>
+                                    </a>
+                                </ng-template>
+                            </p-menu>
                         }
                         <p-button
-                            icon="fa fa-cog"
                             [text]="true"
                             ariaLabel="Section preferences"
-                            (onClick)="preferencesVisible.set(!preferencesVisible())" />
+                            (onClick)="preferencesVisible.set(!preferencesVisible())">
+                            <ng-template #icon>
+                                <kno2-cda-icon name="ui-settings" />
+                            </ng-template>
+                        </p-button>
                     </div>
                 }
             </ng-template>
@@ -57,19 +77,17 @@
                             <ul class="cda-facts">
                                 @if (doc.demographics.dob) {
                                     <li>
-                                        <i
-                                            class="fa fa-birthday-cake"
-                                            title="DOB"
-                                            aria-hidden="true"></i>
+                                        <kno2-cda-icon
+                                            name="calendar"
+                                            title="DOB" />
                                         {{ doc.demographics.dob | date: "MMM d, y" }}
                                     </li>
                                 }
                                 @if (doc.demographics.guardian.name.family) {
                                     <li>
-                                        <i
-                                            class="fa fa-child"
-                                            title="Guardian"
-                                            aria-hidden="true"></i>
+                                        <kno2-cda-icon
+                                            name="child-care"
+                                            title="Guardian" />
                                         {{ guardianName() }}
                                         <span class="cda-muted">(guardian)</span>
                                     </li>
@@ -79,12 +97,9 @@
                     </ng-template>
                     <ul class="cda-facts">
                         <li>
-                            <i
-                                class="fa"
-                                [class.fa-female]="doc.demographics.gender === 'female'"
-                                [class.fa-male]="doc.demographics.gender === 'male'"
-                                title="Demographics"
-                                aria-hidden="true"></i>
+                            <kno2-cda-icon
+                                [name]="genderIcon()"
+                                title="Demographics" />
                             <p>
                                 <strong>{{ doc.demographics.name.given[0] }}</strong>
                                 is a
@@ -97,10 +112,9 @@
                         </li>
                         @if (hasAddress()) {
                             <li>
-                                <i
-                                    class="fa fa-map-marker"
-                                    title="Address"
-                                    aria-hidden="true"></i>
+                                <kno2-cda-icon
+                                    name="geo-location"
+                                    title="Address" />
                                 <address>
                                     @if (doc.demographics.address.street[0]) {
                                         {{ doc.demographics.address.street[0] }}
@@ -115,19 +129,17 @@
                         }
                         @if (phone()) {
                             <li>
-                                <i
-                                    class="fa fa-phone"
-                                    title="Phone"
-                                    aria-hidden="true"></i>
+                                <kno2-cda-icon
+                                    name="phone"
+                                    title="Phone" />
                                 {{ phone() }}
                             </li>
                         }
                         @if (doc.demographics.providerOrganization) {
                             <li>
-                                <i
-                                    class="fa fa-building"
-                                    title="Provider"
-                                    aria-hidden="true"></i>
+                                <kno2-cda-icon
+                                    name="hospital"
+                                    title="Provider" />
                                 {{ doc.demographics.providerOrganization }}
                             </li>
                         }
@@ -158,9 +170,7 @@
                             (collapsedChange)="setSectionExpanded(section.key, !$event)">
                             <ng-template #header>
                                 <span class="cda-section-header">
-                                    <i
-                                        class="fa fa-{{ section.icon }}"
-                                        aria-hidden="true"></i>
+                                    <kno2-cda-icon [name]="section.icon" />
                                     {{ section.display }}
                                     @if (section.empty) {
                                         <span class="cda-muted">(empty)</span>
