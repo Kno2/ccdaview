@@ -2,8 +2,8 @@ import { DatePipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, computed, ElementRef, inject, input, linkedSignal, signal, viewChild } from "@angular/core";
 import { MenuItem } from "primeng/api";
 import { ButtonModule } from "primeng/button";
-import { BarsIcon } from "primeng/icons/bars";
-import { ChevronDownIcon } from "primeng/icons/chevrondown";
+import { MinusIcon } from "primeng/icons/minus";
+import { PlusIcon } from "primeng/icons/plus";
 import { MenuModule } from "primeng/menu";
 import { MessageModule } from "primeng/message";
 import { PanelModule } from "primeng/panel";
@@ -23,9 +23,9 @@ type CdaExplorerSection = CdaSection & { empty: boolean };
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         DatePipe,
-        BarsIcon,
         ButtonModule,
-        ChevronDownIcon,
+        MinusIcon,
+        PlusIcon,
         MenuModule,
         MessageModule,
         PanelModule,
@@ -73,12 +73,7 @@ export class CdaExplorerComponent {
         return visible.map((section) => ({ ...section, empty: !section.narrative?.textContent?.trim() }));
     });
 
-    protected readonly expandedKeys = linkedSignal<string[]>(() => {
-        if (!this.preferences()) return [];
-        return this.sections()
-            .filter((section) => !section.empty)
-            .map((section) => section.key);
-    });
+    protected readonly expandedKeys = linkedSignal({ source: this.document, computation: (): string[] => [] });
 
     protected readonly preferencesVisible = signal(false);
     protected readonly navOpen = signal(false);
@@ -125,6 +120,18 @@ export class CdaExplorerComponent {
     protected setSectionExpanded(key: string, expanded: boolean): void {
         const keys = this.expandedKeys().filter((existing) => existing !== key);
         this.expandedKeys.set(expanded ? [...keys, key] : keys);
+    }
+
+    protected toggleAll(): void {
+        if (this.expandedKeys().length) {
+            this.expandedKeys.set([]);
+            return;
+        }
+        this.expandedKeys.set(
+            this.sections()
+                .filter((section) => !section.empty)
+                .map((section) => section.key)
+        );
     }
 
     protected jumpTo(key: string): void {

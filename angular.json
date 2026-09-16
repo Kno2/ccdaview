@@ -61,7 +61,7 @@
                                 "output": "docs"
                             }
                         ],
-                        "styles": ["projects/demo/src/styles.scss"],
+                        "styles": ["node_modules/font-awesome/css/font-awesome.css", "projects/demo/src/styles.scss"],
                         "ngxEnv": {
                             "prefix": "KNO2FY_WEB_"
                         }

@@ -62,7 +62,7 @@ describe("CdaExplorerComponent", () => {
         expect(component.expandedKeysValue()).toEqual([]);
     });
 
-    it("shows only enabled sections, expanded and in saved order, when preferences exist", () => {
+    it("shows only enabled sections, collapsed and in saved order, when preferences exist", () => {
         localStorage.setItem(
             "cda-preferences.2.16.840.1.113883.10.20.22.1.2",
             JSON.stringify({ enabledSectionKeys: ["vitals", "medications"], sortedSectionKeys: ["vitals", "medications"] })
@@ -70,7 +70,7 @@ describe("CdaExplorerComponent", () => {
         createWithContent(fixtureXml("ccd-r21.xml"));
 
         expect(component.sectionsValue().map((s) => s.key)).toEqual(["vitals", "medications"]);
-        expect(component.expandedKeysValue()).toEqual(["vitals", "medications"]);
+        expect(component.expandedKeysValue()).toEqual([]);
     });
 
     it("persists saved preferences, applies them, and closes the panel", () => {
@@ -82,7 +82,6 @@ describe("CdaExplorerComponent", () => {
 
         expect(localStorage.getItem("cda-preferences.2.16.840.1.113883.10.20.22.1.2")).toBe(JSON.stringify(preferences));
         expect(component.sectionsValue().map((s) => s.key)).toEqual(["vitals"]);
-        expect(component.expandedKeysValue()).toEqual(["vitals"]);
         expect(component.preferencesVisibleValue()).toBe(false);
     });
 

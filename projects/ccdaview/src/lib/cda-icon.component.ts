@@ -9,8 +9,8 @@ import { CDA_ICONS } from "./cda-icons";
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 48 48"
-            width="1em"
-            height="1em"
+            width="1.25em"
+            height="1.25em"
             fill="currentColor"
             aria-hidden="true"
             [innerHTML]="body()"></svg>
@@ -19,7 +19,7 @@ import { CDA_ICONS } from "./cda-icons";
         :host {
             display: inline-flex;
             flex: none;
-            vertical-align: -0.125em;
+            vertical-align: -0.25em;
         }
     `
 })

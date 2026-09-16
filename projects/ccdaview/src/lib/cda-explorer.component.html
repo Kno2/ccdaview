@@ -19,26 +19,34 @@
                 @if (!doc.nonXmlBody) {
                     <p-button
                         class="cda-nav-toggler"
+                        icon="fa fa-bars"
                         [text]="true"
                         ariaLabel="Toggle navigation"
-                        (onClick)="navOpen.set(!navOpen())">
-                        <ng-template #icon>
-                            <svg data-p-icon="bars"></svg>
-                        </ng-template>
-                    </p-button>
+                        (onClick)="navOpen.set(!navOpen())" />
                     <div
                         class="cda-nav-items"
                         [class.cda-nav-open]="navOpen()">
                         @if (sections().length) {
                             <p-button
-                                label="Jump to"
-                                iconPos="right"
-                                [text]="true"
-                                (onClick)="jumpToMenu.toggle($event)">
+                                [label]="expandedKeys().length ? 'Collapse All' : 'Expand All'"
+                                severity="secondary"
+                                size="small"
+                                [outlined]="true"
+                                (onClick)="toggleAll()">
                                 <ng-template #icon>
-                                    <svg data-p-icon="chevron-down"></svg>
+                                    @if (expandedKeys().length) {
+                                        <svg data-p-icon="minus"></svg>
+                                    } @else {
+                                        <svg data-p-icon="plus"></svg>
+                                    }
                                 </ng-template>
                             </p-button>
+                            <p-button
+                                label="Jump to"
+                                icon="fa fa-caret-down"
+                                iconPos="right"
+                                [text]="true"
+                                (onClick)="jumpToMenu.toggle($event)" />
                             <p-menu
                                 #jumpToMenu
                                 [model]="jumpToItems()"
@@ -57,13 +65,10 @@
                             </p-menu>
                         }
                         <p-button
+                            icon="fa fa-cog"
                             [text]="true"
                             ariaLabel="Section preferences"
-                            (onClick)="preferencesVisible.set(!preferencesVisible())">
-                            <ng-template #icon>
-                                <kno2-cda-icon name="ui-settings" />
-                            </ng-template>
-                        </p-button>
+                            (onClick)="preferencesVisible.set(!preferencesVisible())" />
                     </div>
                 }
             </ng-template>
