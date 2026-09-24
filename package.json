@@ -28,6 +28,7 @@
         "autoprefixer": "10.4.23",
         "core-js": "3.47.0",
         "date-fns": "4.1.0",
+        "dompurify": "3.4.15",
         "dragula": "3.7.3",
         "lodash": "4.18.1",
         "riot": "10.1.2"
